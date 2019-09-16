@@ -3,11 +3,7 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="test.com.WeightWatcher">
-      <methods>
-      <include name="verifyLocationname"/>
-      </methods>
-      </class>
+      <class name="test.com.WeightWatcher"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

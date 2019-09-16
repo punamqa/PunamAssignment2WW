@@ -1,6 +1,7 @@
 package test.com;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,8 +15,9 @@ public class WeightWatcher {
 
 	@Test
 	public void verifyMainTitle1() {
-
 		driver.get("https://www.weightwatchers.com/us/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		String expectedTitle = "WW (Weight Watchers): Weight Loss & Wellness Help";
 		String ActualTitle = driver.getTitle();
 		System.out.println(ActualTitle);
@@ -26,7 +28,8 @@ public class WeightWatcher {
 	public void verifyStudioTitle1() {
 
 		driver.get("https://www.weightwatchers.com/us/");
-		driver.findElement(By.className("geo-awareness-banner__link--close")).click();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("find-a-meeting")).click();
 		String expectedTitle = "Find WW Studios & Meetings Near You | WW USA";
 		String ActualTitle = driver.getTitle();
@@ -40,37 +43,33 @@ public class WeightWatcher {
 	public void printresult() {
 
 		driver.get("https://www.weightwatchers.com/us/");
-		driver.findElement(By.className("geo-awareness-banner__link--close")).click();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("find-a-meeting")).click();
 		driver.findElement(By.id("meetingSearch")).sendKeys("10011");
-		// driver.findElement(By.id("meetingSearch")).click();;
-		// driver.findElement(By.className("btn spice-translated")).click();
-		driver.findElement(By.xpath("//*[@id='content']/div/div/ui-view/ui-view/div/div[2]/form/div[1]/button"))
-				.click();
+		driver.findElement(By.xpath("//*[@id='content']/div/div/ui-view/ui-view/div/div[2]/form/div[1]/button")).click();
 		List<WebElement> locations = driver.findElements(By.className("meeting-locations-list"));
 		WebElement firstlocation = locations.get(0);
 		String locationname = firstlocation.findElement(By.className("location__name")).getText();
 		System.out.println("The first location name is is " + locationname);
 		String distance = firstlocation.findElement(By.className("location__distance")).getText();
 		System.out.println("The distance of first location is " + distance);
-
 	}
 
 	@Test
 	public void verifyLocationname() {
 
 		driver.get("https://www.weightwatchers.com/us/");
-		driver.findElement(By.className("geo-awareness-banner__link--close")).click();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("find-a-meeting")).click();
 		driver.findElement(By.id("meetingSearch")).sendKeys("10011 ");
-		driver.findElement(By.xpath("//*[@id='content']/div/div/ui-view/ui-view/div/div[2]/form/div[1]/button"))
-				.click();
+		driver.findElement(By.xpath("//*[@id='content']/div/div/ui-view/ui-view/div/div[2]/form/div[1]/button")).click();
 		List<WebElement> locations = driver.findElements(By.className("meeting-locations-list__item"));
 		WebElement firstlocation = locations.get(0);
 		String Expectedlocationname = firstlocation.findElement(By.className("location__name")).getText();
 		System.out.println("Expected location name" + Expectedlocationname);
 		firstlocation.findElement(By.className("location__name")).click();
-		// String Actuallocationname = driver.getTitle();
 		String Actuallocationname = driver.findElement(By.className("location__name")).getText();
 		System.out.println("Actual location name is" + Actuallocationname);
 		Assert.assertEquals(Actuallocationname, Expectedlocationname);
@@ -82,11 +81,11 @@ public class WeightWatcher {
 	public void printmeetings() {
 
 		driver.get("https://www.weightwatchers.com/us/");
-		driver.findElement(By.className("geo-awareness-banner__link--close")).click();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("find-a-meeting")).click();
 		driver.findElement(By.id("meetingSearch")).sendKeys("10011 ");
-		driver.findElement(By.xpath("//*[@id='content']/div/div/ui-view/ui-view/div/div[2]/form/div[1]/button"))
-				.click();
+		driver.findElement(By.xpath("//*[@id='content']/div/div/ui-view/ui-view/div/div[2]/form/div[1]/button")).click();
 		List<WebElement> locations = driver.findElements(By.className("meeting-locations-list__item"));
 		WebElement firstlocation = locations.get(0);
 		firstlocation.findElement(By.className("location__name")).click();
@@ -99,7 +98,6 @@ public class WeightWatcher {
 				System.out.println("Trainers are" + t.getText() + "for day" + day);
 			}
 
-			// System.out.println("Trainer name is" +Trainer);
 		}
 
 	}
